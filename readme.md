@@ -72,6 +72,8 @@ Confirm by pasting this url in browser
 
 ## API Reference
 
+# 1. Vendor Profile Management:
+
 #### Create a new vendor
 
 ```http
@@ -140,4 +142,44 @@ parameters you can update
 | :-------- | :------- | :----------------------------------- |
 | `id`      | `string` | **Required**. Id of vendor to delete |
 
-# Rest Documentation coming soon...
+# 2. Purchase Order Tracking:
+
+#### Create a purchase order
+
+```http
+  POST /api/purchase_orders/
+```
+
+| Parameter             | Type     | Description                                                  |
+| :-------------------- | :------- | :----------------------------------------------------------- |
+| `po_number`           | `string` | **Required**. Unique Purchase Order Number                   |
+| `order_date`          | `Date`   | **Optional** Default - Current, Order Date                   |
+| `items`               | `Json`   | **Optional**. Default - " ", Purchase Order Id               |
+| `quantity`            | `int`    | **Optional**. Minimum - 1, Order Quantity                    |
+| `status`              | `string` | **Required**. Choices are "Pending", "Completed", "Canceled" |
+| `quality_rating`      | `float`  | **Optional**. Between 0-5, Quality Rating                    |
+| `issue_date`          | `Date`   | **Required**. Order Issue date Id                            |
+| `acknowledgment_date` | `date`   | **Required**. Acknowledgment Order date                      |
+| `vendor`              | `string` | **Required**. Vendor to assign (id)                          |
+
+Below is demo format
+
+```
+ {
+        "po_number": "ab14test",  //po_number should be unique
+        "order_date": "2023-12-11T10:57:52Z",
+        "delivery_date": "2023-12-13T12:00:00Z",
+        "items": {
+            "category": "TV & Appliances",
+            "item_name": "Samsung TV"
+        },
+        "quantity": 1,
+        "status": "Completed",
+        "quality_rating": 3.0,
+        "issue_date": "2023-12-11T10:58:32Z",
+        "acknowledgment_date": "2023-12-11T18:00:00Z",
+        "vendor": "fea9ddf4-6aef-4891-8ead-7aa920bcfd52"   # vendor id
+}
+```
+
+## Rest documentation coming soon...
